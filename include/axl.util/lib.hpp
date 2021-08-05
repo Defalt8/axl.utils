@@ -35,16 +35,10 @@ namespace axl {
 namespace util {
 namespace lib {
 
-typedef enum _LibraryType {
-	LT_STATIC,
-	LT_SHARED
-} LibraryType;
-
-typedef enum _BuildType {
-	BT_DEBUG,
-	BT_RELEASE,
-	BT_OTHER
-} BuildType;
+typedef enum _Build {
+	STATIC,
+	SHARED
+} Build;
 
 typedef struct _Version
 {
@@ -54,8 +48,7 @@ typedef struct _Version
 } Version;
 
 AXLUTILAPI const Version VERSION;
-AXLUTILAPI const LibraryType LIBRARY_TYPE;
-AXLUTILAPI const BuildType BUILD_TYPE;
+AXLUTILAPI const Build BUILD;
 
 } // namespace axl.util.lib	
 } // namespace axl.util	

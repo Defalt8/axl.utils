@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
 	bool verbose = argc > 1 && (0 == strcmp(argv[1], "-v") || 0 == strcmp(argv[1], "--verbose"));
 	using namespace axl;
 	using namespace axl::util;
-	printf("axl.util - version %u.%u.%u -- %s %s --- [Array] test.\n", lib::VERSION.major, lib::VERSION.minor, lib::VERSION.patch, libType(lib::LIBRARY_TYPE), buildType(lib::BUILD_TYPE));
+	printf("axl.util %s library - version %u.%u.%u --- [Array] test\n", buildType(lib::BUILD), lib::VERSION.major, lib::VERSION.minor, lib::VERSION.patch);
 	puts("----------------------------------------");
 	{
 		using namespace axl::util::ds;
@@ -99,7 +99,7 @@ int main(int argc, char *argv[])
 					Assertv(Tracer::Active() == 0, verbose);
 					{
 						Array<T, Allocators::New<T>> array = { 1,2,3,4,5 };
-						Assertv(Tracer::Top() == 5, verbose);
+						Assertv(Tracer::Top() == 10, verbose);
 						Assertv(Tracer::Active() == 5, verbose);
 						Assertv(array.count() == 5U, verbose);
 						Assertv(array.array() != (T*)0, verbose);
@@ -109,7 +109,7 @@ int main(int argc, char *argv[])
 						Assertv(array[3].value == Tracer::value_t(4), verbose);
 						Assertv(array[4].value == Tracer::value_t(5), verbose);
 					}
-					Assertv(Tracer::Top() == 5, verbose);
+					Assertv(Tracer::Top() == 10, verbose);
 					Assertv(Tracer::Active() == 0, verbose);
 					Tracer::Reset();
 				}
@@ -122,7 +122,7 @@ int main(int argc, char *argv[])
 						Assertv(Tracer::Top() == 0, verbose);
 						Assertv(Tracer::Active() == 0, verbose);
 						array = { 1,2,3,4,5 };
-						Assertv(Tracer::Top() == 5, verbose);
+						Assertv(Tracer::Top() == 10, verbose);
 						Assertv(Tracer::Active() == 5, verbose);
 						Assertv(array.count() == 5U, verbose);
 						Assertv(array.array() != (T*)0, verbose);
@@ -132,7 +132,7 @@ int main(int argc, char *argv[])
 						Assertv(array[3].value == Tracer::value_t(4), verbose);
 						Assertv(array[4].value == Tracer::value_t(5), verbose);
 						array.resize(3);
-						Assertv(Tracer::Top() == 8, verbose);
+						Assertv(Tracer::Top() == 13, verbose);
 						Assertv(Tracer::Active() == 3, verbose);
 						Assertv(array.count() == 3U, verbose);
 						Assertv(array.array() != (T*)0, verbose);
@@ -140,7 +140,7 @@ int main(int argc, char *argv[])
 						Assertv(array[1].value == Tracer::value_t(2), verbose);
 						Assertv(array[2].value == Tracer::value_t(3), verbose);
 						array.resize(6);
-						Assertv(Tracer::Top() == 14, verbose);
+						Assertv(Tracer::Top() == 19, verbose);
 						Assertv(Tracer::Active() == 6, verbose);
 						Assertv(array.count() == 6U, verbose);
 						Assertv(array.array() != (T*)0, verbose);
@@ -151,14 +151,14 @@ int main(int argc, char *argv[])
 						Assertv(array[4].value == Tracer::value_t(), verbose);
 						Assertv(array[5].value == Tracer::value_t(), verbose);
 						array.resize(2, 36);
-						Assertv(Tracer::Top() == 16, verbose);
+						Assertv(Tracer::Top() == 21, verbose);
 						Assertv(Tracer::Active() == 2, verbose);
 						Assertv(array.count() == 2U, verbose);
 						Assertv(array.array() != (T*)0, verbose);
 						Assertv(array[0].value == Tracer::value_t(1), verbose);
 						Assertv(array[1].value == Tracer::value_t(2), verbose);
 						array.resize(5, 36);
-						Assertv(Tracer::Top() == 21, verbose);
+						Assertv(Tracer::Top() == 26, verbose);
 						Assertv(Tracer::Active() == 5, verbose);
 						Assertv(array.count() == 5U, verbose);
 						Assertv(array.array() != (T*)0, verbose);
@@ -168,7 +168,7 @@ int main(int argc, char *argv[])
 						Assertv(array[3].value == Tracer::value_t(36), verbose);
 						Assertv(array[4].value == Tracer::value_t(36), verbose);
 					}
-					Assertv(Tracer::Top() == 21, verbose);
+					Assertv(Tracer::Top() == 26, verbose);
 					Assertv(Tracer::Active() == 0, verbose);
 					Tracer::Reset();
 				}

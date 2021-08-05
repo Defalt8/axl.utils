@@ -1,4 +1,5 @@
 
+add_compile_definitions( AXLUTIL_SOURCE_DIR="${PROJECT_SOURCE_DIR}" )
 link_libraries( axl.util )
 
 add_executable( "axl.util.lib" "lib.cpp" )

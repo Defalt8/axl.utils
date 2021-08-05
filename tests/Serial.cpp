@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <cstring>
 #include "Assert.hpp"
+#include "lib.hpp"
 #include <axl.util/everything.hpp>
 
 class Person : public axl::util::Serial
@@ -55,7 +56,9 @@ class Person : public axl::util::Serial
 int main(int argc, char *argv[])
 {
 	bool verbose = argc > 1 && (0 == strcmp(argv[1], "-v") || 0 == strcmp(argv[1], "--verbose"));
-	printf("axl.util.Serial test");
+	using namespace axl;
+	using namespace axl::util;
+	printf("axl.util %s library - version %u.%u.%u --- [Serial] test\n", buildType(lib::BUILD), lib::VERSION.major, lib::VERSION.minor, lib::VERSION.patch);
 	puts("----------------------------------------");
 	{
 		axl::util::protocol::V0 protocol;

@@ -1,4 +1,3 @@
-set( CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS TRUE )
 set( DEBUG_SUFFIX "" )
 set( TYPE_SUFFIX "" )
 
@@ -13,48 +12,7 @@ if( "${CMAKE_BUILD_TYPE}" MATCHES "[Dd][Ee][Bb][Uu][Gg]" )
 	set( DEBUG_SUFFIX d )
 endif()
 
-add_library( axl.util ${AXLUTIL_TYPE}
-	"lib.cpp"
-	"String.cpp"
-	"WString.cpp"
-	"Directory.cpp"
-	"File.cpp"
-	"Random.cpp"
-	"Serial.cpp"
-	"Protocol.cpp"
-	"protocols/V0.cpp"
-	"utils.cpp"
-	"uc/Clock.cpp"
-	"uc/Time.cpp"
-	"uc/Tracer.cpp"
-	"uc/Object.cpp"
-	"uc/Child.cpp"
-	"uc/Parent.cpp"
-
-	"${AXLUTIL_INCLUDE_DIR}/axl.util/everything.hpp"
-	"${AXLUTIL_INCLUDE_DIR}/axl.util/lib.hpp"
-	"${AXLUTIL_INCLUDE_DIR}/axl.util/types.hpp"
-	"${AXLUTIL_INCLUDE_DIR}/axl.util/String.hpp"
-	"${AXLUTIL_INCLUDE_DIR}/axl.util/WString.hpp"
-	"${AXLUTIL_INCLUDE_DIR}/axl.util/File.hpp"
-	"${AXLUTIL_INCLUDE_DIR}/axl.util/Directory.hpp"
-	"${AXLUTIL_INCLUDE_DIR}/axl.util/Random.hpp"
-	"${AXLUTIL_INCLUDE_DIR}/axl.util/Serial.hpp"
-	"${AXLUTIL_INCLUDE_DIR}/axl.util/Protocol.hpp"
-	"${AXLUTIL_INCLUDE_DIR}/axl.util/protocols/V0.hpp"
-	"${AXLUTIL_INCLUDE_DIR}/axl.util/utils.hpp"
-	"${AXLUTIL_INCLUDE_DIR}/axl.util/allocators.hpp"
-	"${AXLUTIL_INCLUDE_DIR}/axl.util/ds/Array.hpp"
-	"${AXLUTIL_INCLUDE_DIR}/axl.util/ds/Node.hpp"
-	"${AXLUTIL_INCLUDE_DIR}/axl.util/ds/List.hpp"
-	"${AXLUTIL_INCLUDE_DIR}/axl.util/ds/Map.hpp"
-	"${AXLUTIL_INCLUDE_DIR}/axl.util/uc/Tracer.hpp"
-	"${AXLUTIL_INCLUDE_DIR}/axl.util/uc/Clock.hpp"
-	"${AXLUTIL_INCLUDE_DIR}/axl.util/uc/Time.hpp"
-	"${AXLUTIL_INCLUDE_DIR}/axl.util/uc/Object.hpp"
-	"${AXLUTIL_INCLUDE_DIR}/axl.util/uc/Child.hpp"
-	"${AXLUTIL_INCLUDE_DIR}/axl.util/uc/Parent.hpp"
-)
+add_library( axl.util ${AXLUTIL_TYPE} ${AXLUTIL_SOURCE_FILES} ${AXLUTIL_HEADER_FILES} )
 target_include_directories( axl.util PUBLIC "${AXLUTIL_INCLUDE_DIR}" )
 target_compile_definitions( axl.util
 	PRIVATE AXLUTIL_BUILD

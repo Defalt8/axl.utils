@@ -8,7 +8,7 @@
 const axl::util::String LICENSE_STR = 
 "MIT License\n"
 "\n"
-"Copyright (c) 2020 Natnael Eshetu\n"
+"Copyright (c) 2021 Natnael Eshetu\n"
 "\n"
 "Permission is hereby granted, free of charge, to any person obtaining a copy\n"
 "of this software and associated documentation files (the \"Software\"), to deal\n"
@@ -33,19 +33,19 @@ int main(int argc, char *argv[])
 	bool verbose = argc > 1 && (0 == strcmp(argv[1], "-v") || 0 == strcmp(argv[1], "--verbose"));
 	using namespace axl;
 	using namespace axl::util;
-	printf("axl.util - version %u.%u.%u -- %s %s\n", lib::VERSION.major, lib::VERSION.minor, lib::VERSION.patch, libType(lib::LIBRARY_TYPE), buildType(lib::BUILD_TYPE));
+	printf("axl.util %s library - version %u.%u.%u --- [File] test\n", buildType(lib::BUILD), lib::VERSION.major, lib::VERSION.minor, lib::VERSION.patch);
 	puts("----------------------------------------");
 	{ // File::exists
-		Assertv(File::exists("LICENSE"), verbose);
+		Assertv(File::exists(AXLUTIL_SOURCE_DIR"/LICENSE"), verbose);
 		Assertv(!File::exists("non_existent_file.nope"), verbose);
 	}
 	{ // File::getSize
-		Assertv(File::getSize("LICENSE") == 1092, verbose);
+		Assertv(File::getSize(AXLUTIL_SOURCE_DIR"/LICENSE") == 1092, verbose);
 		Assertv(File::getSize("non_existent_file.nope") == 0, verbose);
 	}
 	{ // File::getStringContent
-		Assertv(File::getStringContent("LICENSE") == LICENSE_STR, verbose);
-		Assertv(File::getWStringContent("LICENSE") == WString(LICENSE_STR), verbose);
+		Assertv(File::getStringContent(AXLUTIL_SOURCE_DIR"/LICENSE") == LICENSE_STR, verbose);
+		Assertv(File::getWStringContent(AXLUTIL_SOURCE_DIR"/LICENSE") == WString(LICENSE_STR), verbose);
 	}
 	
 	if(assert::_num_failed_tests > 0) puts("----------------------------------------");
