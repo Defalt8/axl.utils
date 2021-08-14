@@ -7,6 +7,7 @@
 #include "String.hpp"
 #include "WString.hpp"
 #include "File.hpp"
+#include "Directory.hpp"
 #include "Random.hpp"
 #include "Serial.hpp"
 #include "Protocol.hpp"

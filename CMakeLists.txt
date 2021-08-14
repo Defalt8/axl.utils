@@ -10,7 +10,7 @@ endif()
 
 set( CMAKE_CXX_STANDARD 11 CACHE STRING "C++ compiler standard.")
 set( CMAKE_CXX_STANDARD_REQUIRED TRUE CACHE BOOL "" )
-set( CMAKE_BUILD_TYPE Debug CACHE STRING "Build configuration type: ${CMAKE_CONFIGURATION_TYPES}." )
+# set( CMAKE_BUILD_TYPE Debug CACHE STRING "Build configuration type: ${CMAKE_CONFIGURATION_TYPES}." )
 set( AXLUTIL_TYPE STATIC CACHE STRING "Library type." )
 set( AXLUTIL_RUNTIME_DIR "${PROJECT_BINARY_DIR}/bin" CACHE PATH "Binary output directory path." )
 set( AXLUTIL_LIBRARY_DIR "${PROJECT_BINARY_DIR}/bin" CACHE PATH "Library output directory path." )
@@ -77,6 +77,7 @@ if( AXLUTIL_INSTALL_HEADERS )
 		"${AXLUTIL_INCLUDE_DIR}/axl.util/String.hpp"
 		"${AXLUTIL_INCLUDE_DIR}/axl.util/WString.hpp"
 		"${AXLUTIL_INCLUDE_DIR}/axl.util/File.hpp"
+		"${AXLUTIL_INCLUDE_DIR}/axl.util/Directory.hpp"
 		"${AXLUTIL_INCLUDE_DIR}/axl.util/Random.hpp"
 		"${AXLUTIL_INCLUDE_DIR}/axl.util/Serial.hpp"
 		"${AXLUTIL_INCLUDE_DIR}/axl.util/Protocol.hpp"
@@ -92,6 +93,8 @@ if( AXLUTIL_INSTALL_HEADERS )
 		"${AXLUTIL_INCLUDE_DIR}/axl.util/ds/Node.inl"
 		"${AXLUTIL_INCLUDE_DIR}/axl.util/ds/List.hpp"
 		"${AXLUTIL_INCLUDE_DIR}/axl.util/ds/List.inl"
+		"${AXLUTIL_INCLUDE_DIR}/axl.util/ds/Map.hpp"
+		"${AXLUTIL_INCLUDE_DIR}/axl.util/ds/Map.inl"
 		DESTINATION "include/axl.util/ds"
 	)
 	install( FILES
