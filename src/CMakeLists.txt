@@ -1,4 +1,5 @@
-set( DEBUG_SUFFIX "" )
+
+set( DEBUG_SUFFIX $<$<CONFIG:Debug>:d> )
 set( TYPE_SUFFIX "" )
 
 if( "${AXLUTIL_TYPE}" MATCHES "[Ss][Hh][Aa][Rr][Ee][Dd]" OR BUILD_SHARED_LIBS )
@@ -6,10 +7,6 @@ if( "${AXLUTIL_TYPE}" MATCHES "[Ss][Hh][Aa][Rr][Ee][Dd]" OR BUILD_SHARED_LIBS )
 else()
 	set( AXLUTIL_TYPE STATIC )
 	set( TYPE_SUFFIX s )
-endif()
-
-if( "${CMAKE_BUILD_TYPE}" MATCHES "[Dd][Ee][Bb][Uu][Gg]" )
-	set( DEBUG_SUFFIX d )
 endif()
 
 add_library( axl.util ${AXLUTIL_TYPE} ${AXLUTIL_SOURCE_FILES} ${AXLUTIL_HEADER_FILES} )
@@ -40,6 +37,7 @@ set_target_properties( axl.util PROPERTIES
 	ARCHIVE_OUTPUT_DIRECTORY "${AXLUTIL_ARCHIVE_DIR}"
 	LIBRARY_OUTPUT_DIRECTORY "${AXLUTIL_LIBRARY_DIR}"
 	RUNTIME_OUTPUT_DIRECTORY "${AXLUTIL_RUNTIME_DIR}"
+	MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>"
 )
 
 if( "${AXLUTIL_TYPE}" STREQUAL "SHARED" )
