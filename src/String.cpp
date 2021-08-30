@@ -486,7 +486,26 @@ String& String::format(const char_t* format, ...)
 #	endif
 #endif
 	va_end(args);
+	this->length(true);
 	return *this;
+}
+String String::Format(size_t length, const char_t* format, ...)
+{
+	String str(length);
+	va_list args;
+	va_start(args, format);
+#ifdef _MSC_VER
+	vsprintf_s(str.m_array, (str.m_size-1), format, args);
+#else
+#	if __cplusplus >= 201103
+	m_length = vsnprintf(str.m_array, (str.m_size-1), format, args);
+#	else
+	m_length = vsprintf(str.m_array, format, args);
+#	endif
+#endif
+	va_end(args);
+	str.length(true);
+	return str;
 }
 
 size_t String::scLength(const String::char_t* cstr, size_t max)

@@ -65,6 +65,7 @@ class AXLUTILCXXAPI WString
 		WString& format(const char_t* format, ...);
 		String toString() const;
 	public:
+		static WString Format(size_t length, const char_t* format, ...);
 		static size_t scwLength(const WString::char_t* cwstr, size_t max=-1);
 		static char_t* scwCopy(const WString::char_t* cwstrsrc, WString::char_t* cwstrdest, size_t length, size_t srcoffset = 0U, size_t destoffset = 0U);
 		static char_t* scCopy(const String::char_t* cwstrsrc, WString::char_t* cwstrdest, size_t length, size_t srcoffset = 0U, size_t destoffset = 0U);

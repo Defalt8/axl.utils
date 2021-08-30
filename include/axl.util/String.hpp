@@ -60,6 +60,7 @@ class AXLUTILCXXAPI String
 		String toLower() const;
 		String& format(const char_t* format, ...);
 	public:
+		static String Format(size_t length, const char_t* format, ...);
 		static size_t scLength(const String::char_t* cstr, size_t max=-1);
 		static char_t* scCopy(const String::char_t* cstrsrc, String::char_t* cstrdest, size_t length, size_t srcoffset = 0U, size_t destoffset = 0U);
 		static bool scEquals(const String::char_t* cstr1, const String::char_t* cstr2);

@@ -564,6 +564,24 @@ String WString::toString() const
 	return str;
 }
 
+WString WString::Format(size_t length, const char_t* format, ...)
+{
+	WString str(length);
+	va_list args;
+	va_start(args, format);
+#ifdef _MSC_VER
+	vswprintf_s(str.m_array, (str.m_size - 1), format, args);
+#else
+#	if ((defined(__MINGW32_VERSION) && __MINGW32_VERSION > 5000002L)) || (!defined(__MINGW32_VERSION) && __cplusplus >= 201103)
+	m_length = vswprintf(str.m_array, (str.m_size - 1), format, args);
+#	else
+	m_length = vswprintf(str.m_array, format, args);
+#	endif
+#endif
+	va_end(args);
+	str.length(true);
+	return str;
+}
 size_t WString::scwLength(const WString::char_t* cwstr, size_t max)
 {
 	if(!cwstr) return 0U;
