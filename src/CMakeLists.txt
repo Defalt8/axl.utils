@@ -1,6 +1,10 @@
 
-set( DEBUG_SUFFIX $<$<CONFIG:Debug>:d> )
+set( DEBUG_SUFFIX "" )
 set( TYPE_SUFFIX "" )
+
+if( "${CMAKE_BUILD_TYPE}" MATCHES "[Dd][Ee][Bb][Uu][Gg]" )
+	set( DEBUG_SUFFIX d )
+endif()
 
 if( "${AXLUTIL_TYPE}" MATCHES "[Ss][Hh][Aa][Rr][Ee][Dd]" OR BUILD_SHARED_LIBS )
 	set( AXLUTIL_TYPE SHARED )
